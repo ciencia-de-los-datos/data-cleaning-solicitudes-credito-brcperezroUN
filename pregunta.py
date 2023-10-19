@@ -22,7 +22,7 @@ def clean_data():
     df['barrio'] = df['barrio'].apply(lambda x: x.lower().replace('_', '-').replace('-', ' ')).str.capitalize()
     df['línea_credito'] = df['línea_credito'].apply(lambda x: x.lower().replace('_', ' ').replace('-', ' ')).str.capitalize()
     df['monto_del_credito'] = df['monto_del_credito'].str.replace(',', '').str.replace('$', '', regex=False).str.replace(' ', '').astype(float)
-    df['fecha_de_beneficio'] = pd.to_datetime(df['fecha_de_beneficio'], dayfirst=True)
+    df['fecha_de_beneficio'] = pd.to_datetime(df['fecha_de_beneficio'], format='mixed', dayfirst=True)
     
     df = df.drop_duplicates().dropna()
     df.reset_index(drop = True)
